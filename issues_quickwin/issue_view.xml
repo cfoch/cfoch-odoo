@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <record id="view_filter_project_issue_inherited" model="ir.ui.view">
+      <field name="name">Issue Filter</field>
+      <field name="model">project.issue</field>
+      <field name="inherit_id" ref="project_issue.view_project_issue_filter"/>
+      <field name="arch" type="xml">
+        <filter name="Responsible" position="before">
+          <filter string="Categoría" name="Category" context="{'group_by':'category_id'}"/>
+        </filter>
+      </field>
+    </record>
+
+    <record id="view_form_project_issue_inherited" model="ir.ui.view">
+      <field name="name">Issues</field>
+      <field name="model">project.issue</field>
+      <field name="inherit_id" ref="project_issue.project_issue_form_view"/>
+      <field name="arch" type="xml">
+        <field name="user_id" position="before">
+          <field name="category_id"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_tree_project_issue_inherited" model="ir.ui.view">
+      <field name="name">Issues Tree</field>
+      <field name="model">project.issue</field>
+      <field name="inherit_id" ref="project_issue.project_issue_tree_view"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="category_id"/>
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>
