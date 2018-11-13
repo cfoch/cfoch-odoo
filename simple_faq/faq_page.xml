@@ -1,0 +1,22 @@
+<openerp>
+  <data>
+    <!-- webpage record -->
+    <template id="web_faq" name="FAQ" page="True">
+      <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+          <center><h1>Preguntas frecuentes</h1></center>
+          <div style="margin-left: 20%; margin-right: 20%; margin-bottom: 5%">
+            <div>
+              <t t-foreach="faq" t-as="question">
+                <li>
+                  <ul><h2><t t-esc="question.question"/></h2></ul>
+                  <ul><t t-raw="question.answer"/></ul>
+                </li>
+              </t>
+            </div>
+          </div>
+        </div>
+      </t>
+    </template>
+  </data>
+</openerp>

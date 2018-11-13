@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <act_window id="action_simple_faq"
+      name="FAQ"
+      res_model="faq.question"
+      view_mode="tree,form" />
+
+    <menuitem id="menu_simple_faq"
+      name="FAQ"
+      parent="project.menu_project_management"
+      sequence="20"
+      action="action_simple_faq" />
+
+    <record id="view_tree_simple_faq" model="ir.ui.view">
+      <field name="name">Simple FAQ</field>
+      <field name="model">faq.question</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="question"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_form_simple_faq" model="ir.ui.view">
+      <field name="name">Simple FAQ</field>
+      <field name="model">faq.question</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="do_close" type="object"
+                    string="Cerrar" class="oe_highlight"
+                    attrs="{'invisible':[('state', '!=', 'published')]}"/>
+            <button name="do_publish" type="object"
+                    string="Publicar" class="oe_highlight"
+                    attrs="{'invisible':[('state', '!=', 'draft')]}"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,published,closed"
+                    statusbar_colors="{'draft':'blue', 'published':'blue', 'closed':'red'}"/>
+          </header>
+          <sheet>
+            <group name="group_top">
+              <field name="question"/>
+              <field name="answer" widget="html"/>
+              <field name="issues_ids" string="Categorías de incidentes relacionados"/>
+              <field name="close_reason" attrs="{'invisible':[('state', '!=', 'closed')]}"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+  </data>
+</openerp>
